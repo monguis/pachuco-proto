@@ -6,7 +6,7 @@ option go_package = "github.com/monguis/pachuco-proto";
 
 service User {
   rpc GetUser (IdRequest) returns (UserResponse);
-  rpc GetUserByEmail (emailRequest) returns (UserResponse);
+  rpc GetUserByEmail (EmailRequest) returns (UserResponse);
   rpc AddUser(UserRequest) returns (UserResponse);
   rpc UpdateUser (UpdateUserRequest) returns (UserResponse);
   rpc DeleteUser (UpdateUserRequest) returns (UserResponse);
@@ -16,7 +16,7 @@ message IdRequest {
   string id = 1;
 }
 
-message emailRequest {
+message EmailRequest {
   string email = 1;
 }
 
