@@ -328,7 +328,7 @@ const file_user_protos_users_proto_rawDesc = "" +
 	"\x17user_protos/users.proto\x12\rpachuco_proto\"\x1b\n" +
 	"\tIdRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"$\n" +
-	"\femailRequest\x12\x14\n" +
+	"\fEmailRequest\x12\x14\n" +
 	"\x05email\x18\x01 \x01(\tR\x05email\"\x95\x01\n" +
 	"\vUserRequest\x12\x1a\n" +
 	"\bnickname\x18\x01 \x01(\tR\bnickname\x12\x14\n" +
@@ -350,7 +350,7 @@ const file_user_protos_users_proto_rawDesc = "" +
 	"\x04user\x18\x02 \x01(\v2\x1a.pachuco_proto.UserRequestR\x04user2\xf2\x02\n" +
 	"\x04User\x12@\n" +
 	"\aGetUser\x12\x18.pachuco_proto.IdRequest\x1a\x1b.pachuco_proto.UserResponse\x12J\n" +
-	"\x0eGetUserByEmail\x12\x1b.pachuco_proto.emailRequest\x1a\x1b.pachuco_proto.UserResponse\x12B\n" +
+	"\x0eGetUserByEmail\x12\x1b.pachuco_proto.EmailRequest\x1a\x1b.pachuco_proto.UserResponse\x12B\n" +
 	"\aAddUser\x12\x1a.pachuco_proto.UserRequest\x1a\x1b.pachuco_proto.UserResponse\x12K\n" +
 	"\n" +
 	"UpdateUser\x12 .pachuco_proto.UpdateUserRequest\x1a\x1b.pachuco_proto.UserResponse\x12K\n" +
@@ -372,7 +372,7 @@ func file_user_protos_users_proto_rawDescGZIP() []byte {
 var file_user_protos_users_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_user_protos_users_proto_goTypes = []any{
 	(*IdRequest)(nil),         // 0: pachuco_proto.IdRequest
-	(*EmailRequest)(nil),      // 1: pachuco_proto.emailRequest
+	(*EmailRequest)(nil),      // 1: pachuco_proto.EmailRequest
 	(*UserRequest)(nil),       // 2: pachuco_proto.UserRequest
 	(*UserResponse)(nil),      // 3: pachuco_proto.UserResponse
 	(*UpdateUserRequest)(nil), // 4: pachuco_proto.UpdateUserRequest
@@ -380,7 +380,7 @@ var file_user_protos_users_proto_goTypes = []any{
 var file_user_protos_users_proto_depIdxs = []int32{
 	2, // 0: pachuco_proto.UpdateUserRequest.user:type_name -> pachuco_proto.UserRequest
 	0, // 1: pachuco_proto.User.GetUser:input_type -> pachuco_proto.IdRequest
-	1, // 2: pachuco_proto.User.GetUserByEmail:input_type -> pachuco_proto.emailRequest
+	1, // 2: pachuco_proto.User.GetUserByEmail:input_type -> pachuco_proto.EmailRequest
 	2, // 3: pachuco_proto.User.AddUser:input_type -> pachuco_proto.UserRequest
 	4, // 4: pachuco_proto.User.UpdateUser:input_type -> pachuco_proto.UpdateUserRequest
 	4, // 5: pachuco_proto.User.DeleteUser:input_type -> pachuco_proto.UpdateUserRequest
