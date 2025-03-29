@@ -2,20 +2,19 @@ syntax = "proto3";
 
 import "google/api/timestamp.proto";
 
-package pachucrud;
+package pachuco_proto;
 
-option go_package = "github.com/monguis/pachucrud/proto";
+option go_package = "github.com/monguis/pachuco-proto";
 
-service Greeter {
-  rpc SayHello (HelloRequest) returns (HelloResponse);
+service DiceThrow{
+  rpc SaveThrow (ThrowRequest) returns (ThrowResponse);
+  rpc GetThrow (IdRequest) returns (ThrowResponse);
+  rpc GetUserThrows (IdRequest) returns (ThrowResponse);
+  rpc GetGameThrows (IdRequest) returns (ThrowResponse);
 }
 
-message HelloRequest {
-  string name = 1;
-}
-
-message HelloResponse {
-  string message = 1;
+message IdRequest {
+  string IdRequest = 1;
 }
 
 message ThrowRequest{

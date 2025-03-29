@@ -4,7 +4,7 @@
 // - protoc             v3.19.6
 // source: dice-throws_protos/dice-throws.proto
 
-package proto
+package pachuco_proto
 
 import (
 	context "context"
@@ -19,101 +19,215 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Greeter_SayHello_FullMethodName = "/pachucrud.Greeter/SayHello"
+	DiceThrow_SaveThrow_FullMethodName     = "/pachuco_proto.DiceThrow/SaveThrow"
+	DiceThrow_GetThrow_FullMethodName      = "/pachuco_proto.DiceThrow/GetThrow"
+	DiceThrow_GetUserThrows_FullMethodName = "/pachuco_proto.DiceThrow/GetUserThrows"
+	DiceThrow_GetGameThrows_FullMethodName = "/pachuco_proto.DiceThrow/GetGameThrows"
 )
 
-// GreeterClient is the client API for Greeter service.
+// DiceThrowClient is the client API for DiceThrow service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type GreeterClient interface {
-	SayHello(ctx context.Context, in *HelloRequest, opts ...grpc.CallOption) (*HelloResponse, error)
+type DiceThrowClient interface {
+	SaveThrow(ctx context.Context, in *ThrowRequest, opts ...grpc.CallOption) (*ThrowResponse, error)
+	GetThrow(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*ThrowResponse, error)
+	GetUserThrows(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*ThrowResponse, error)
+	GetGameThrows(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*ThrowResponse, error)
 }
 
-type greeterClient struct {
+type diceThrowClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewGreeterClient(cc grpc.ClientConnInterface) GreeterClient {
-	return &greeterClient{cc}
+func NewDiceThrowClient(cc grpc.ClientConnInterface) DiceThrowClient {
+	return &diceThrowClient{cc}
 }
 
-func (c *greeterClient) SayHello(ctx context.Context, in *HelloRequest, opts ...grpc.CallOption) (*HelloResponse, error) {
+func (c *diceThrowClient) SaveThrow(ctx context.Context, in *ThrowRequest, opts ...grpc.CallOption) (*ThrowResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(HelloResponse)
-	err := c.cc.Invoke(ctx, Greeter_SayHello_FullMethodName, in, out, cOpts...)
+	out := new(ThrowResponse)
+	err := c.cc.Invoke(ctx, DiceThrow_SaveThrow_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// GreeterServer is the server API for Greeter service.
-// All implementations must embed UnimplementedGreeterServer
-// for forward compatibility.
-type GreeterServer interface {
-	SayHello(context.Context, *HelloRequest) (*HelloResponse, error)
-	mustEmbedUnimplementedGreeterServer()
+func (c *diceThrowClient) GetThrow(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*ThrowResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ThrowResponse)
+	err := c.cc.Invoke(ctx, DiceThrow_GetThrow_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
-// UnimplementedGreeterServer must be embedded to have
+func (c *diceThrowClient) GetUserThrows(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*ThrowResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ThrowResponse)
+	err := c.cc.Invoke(ctx, DiceThrow_GetUserThrows_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *diceThrowClient) GetGameThrows(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*ThrowResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ThrowResponse)
+	err := c.cc.Invoke(ctx, DiceThrow_GetGameThrows_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// DiceThrowServer is the server API for DiceThrow service.
+// All implementations must embed UnimplementedDiceThrowServer
+// for forward compatibility.
+type DiceThrowServer interface {
+	SaveThrow(context.Context, *ThrowRequest) (*ThrowResponse, error)
+	GetThrow(context.Context, *IdRequest) (*ThrowResponse, error)
+	GetUserThrows(context.Context, *IdRequest) (*ThrowResponse, error)
+	GetGameThrows(context.Context, *IdRequest) (*ThrowResponse, error)
+	mustEmbedUnimplementedDiceThrowServer()
+}
+
+// UnimplementedDiceThrowServer must be embedded to have
 // forward compatible implementations.
 //
 // NOTE: this should be embedded by value instead of pointer to avoid a nil
 // pointer dereference when methods are called.
-type UnimplementedGreeterServer struct{}
+type UnimplementedDiceThrowServer struct{}
 
-func (UnimplementedGreeterServer) SayHello(context.Context, *HelloRequest) (*HelloResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SayHello not implemented")
+func (UnimplementedDiceThrowServer) SaveThrow(context.Context, *ThrowRequest) (*ThrowResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SaveThrow not implemented")
 }
-func (UnimplementedGreeterServer) mustEmbedUnimplementedGreeterServer() {}
-func (UnimplementedGreeterServer) testEmbeddedByValue()                 {}
+func (UnimplementedDiceThrowServer) GetThrow(context.Context, *IdRequest) (*ThrowResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetThrow not implemented")
+}
+func (UnimplementedDiceThrowServer) GetUserThrows(context.Context, *IdRequest) (*ThrowResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUserThrows not implemented")
+}
+func (UnimplementedDiceThrowServer) GetGameThrows(context.Context, *IdRequest) (*ThrowResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetGameThrows not implemented")
+}
+func (UnimplementedDiceThrowServer) mustEmbedUnimplementedDiceThrowServer() {}
+func (UnimplementedDiceThrowServer) testEmbeddedByValue()                   {}
 
-// UnsafeGreeterServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to GreeterServer will
+// UnsafeDiceThrowServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to DiceThrowServer will
 // result in compilation errors.
-type UnsafeGreeterServer interface {
-	mustEmbedUnimplementedGreeterServer()
+type UnsafeDiceThrowServer interface {
+	mustEmbedUnimplementedDiceThrowServer()
 }
 
-func RegisterGreeterServer(s grpc.ServiceRegistrar, srv GreeterServer) {
-	// If the following call pancis, it indicates UnimplementedGreeterServer was
+func RegisterDiceThrowServer(s grpc.ServiceRegistrar, srv DiceThrowServer) {
+	// If the following call pancis, it indicates UnimplementedDiceThrowServer was
 	// embedded by pointer and is nil.  This will cause panics if an
 	// unimplemented method is ever invoked, so we test this at initialization
 	// time to prevent it from happening at runtime later due to I/O.
 	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
 		t.testEmbeddedByValue()
 	}
-	s.RegisterService(&Greeter_ServiceDesc, srv)
+	s.RegisterService(&DiceThrow_ServiceDesc, srv)
 }
 
-func _Greeter_SayHello_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(HelloRequest)
+func _DiceThrow_SaveThrow_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ThrowRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GreeterServer).SayHello(ctx, in)
+		return srv.(DiceThrowServer).SaveThrow(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Greeter_SayHello_FullMethodName,
+		FullMethod: DiceThrow_SaveThrow_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GreeterServer).SayHello(ctx, req.(*HelloRequest))
+		return srv.(DiceThrowServer).SaveThrow(ctx, req.(*ThrowRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// Greeter_ServiceDesc is the grpc.ServiceDesc for Greeter service.
+func _DiceThrow_GetThrow_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DiceThrowServer).GetThrow(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DiceThrow_GetThrow_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DiceThrowServer).GetThrow(ctx, req.(*IdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DiceThrow_GetUserThrows_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DiceThrowServer).GetUserThrows(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DiceThrow_GetUserThrows_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DiceThrowServer).GetUserThrows(ctx, req.(*IdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DiceThrow_GetGameThrows_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DiceThrowServer).GetGameThrows(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DiceThrow_GetGameThrows_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DiceThrowServer).GetGameThrows(ctx, req.(*IdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// DiceThrow_ServiceDesc is the grpc.ServiceDesc for DiceThrow service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var Greeter_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "pachucrud.Greeter",
-	HandlerType: (*GreeterServer)(nil),
+var DiceThrow_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "pachuco_proto.DiceThrow",
+	HandlerType: (*DiceThrowServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "SayHello",
-			Handler:    _Greeter_SayHello_Handler,
+			MethodName: "SaveThrow",
+			Handler:    _DiceThrow_SaveThrow_Handler,
+		},
+		{
+			MethodName: "GetThrow",
+			Handler:    _DiceThrow_GetThrow_Handler,
+		},
+		{
+			MethodName: "GetUserThrows",
+			Handler:    _DiceThrow_GetUserThrows_Handler,
+		},
+		{
+			MethodName: "GetGameThrows",
+			Handler:    _DiceThrow_GetGameThrows_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

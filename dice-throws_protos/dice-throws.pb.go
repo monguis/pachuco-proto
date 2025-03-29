@@ -4,7 +4,7 @@
 // 	protoc        v3.19.6
 // source: dice-throws_protos/dice-throws.proto
 
-package proto
+package pachuco_proto
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -22,27 +22,27 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type HelloRequest struct {
+type IdRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	IdRequest     string                 `protobuf:"bytes,1,opt,name=IdRequest,proto3" json:"IdRequest,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *HelloRequest) Reset() {
-	*x = HelloRequest{}
+func (x *IdRequest) Reset() {
+	*x = IdRequest{}
 	mi := &file_dice_throws_protos_dice_throws_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *HelloRequest) String() string {
+func (x *IdRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*HelloRequest) ProtoMessage() {}
+func (*IdRequest) ProtoMessage() {}
 
-func (x *HelloRequest) ProtoReflect() protoreflect.Message {
+func (x *IdRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_dice_throws_protos_dice_throws_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -54,58 +54,14 @@ func (x *HelloRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use HelloRequest.ProtoReflect.Descriptor instead.
-func (*HelloRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use IdRequest.ProtoReflect.Descriptor instead.
+func (*IdRequest) Descriptor() ([]byte, []int) {
 	return file_dice_throws_protos_dice_throws_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *HelloRequest) GetName() string {
+func (x *IdRequest) GetIdRequest() string {
 	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-type HelloResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Message       string                 `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *HelloResponse) Reset() {
-	*x = HelloResponse{}
-	mi := &file_dice_throws_protos_dice_throws_proto_msgTypes[1]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *HelloResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*HelloResponse) ProtoMessage() {}
-
-func (x *HelloResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_dice_throws_protos_dice_throws_proto_msgTypes[1]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use HelloResponse.ProtoReflect.Descriptor instead.
-func (*HelloResponse) Descriptor() ([]byte, []int) {
-	return file_dice_throws_protos_dice_throws_proto_rawDescGZIP(), []int{1}
-}
-
-func (x *HelloResponse) GetMessage() string {
-	if x != nil {
-		return x.Message
+		return x.IdRequest
 	}
 	return ""
 }
@@ -125,7 +81,7 @@ type ThrowRequest struct {
 
 func (x *ThrowRequest) Reset() {
 	*x = ThrowRequest{}
-	mi := &file_dice_throws_protos_dice_throws_proto_msgTypes[2]
+	mi := &file_dice_throws_protos_dice_throws_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -137,7 +93,7 @@ func (x *ThrowRequest) String() string {
 func (*ThrowRequest) ProtoMessage() {}
 
 func (x *ThrowRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_dice_throws_protos_dice_throws_proto_msgTypes[2]
+	mi := &file_dice_throws_protos_dice_throws_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -150,7 +106,7 @@ func (x *ThrowRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ThrowRequest.ProtoReflect.Descriptor instead.
 func (*ThrowRequest) Descriptor() ([]byte, []int) {
-	return file_dice_throws_protos_dice_throws_proto_rawDescGZIP(), []int{2}
+	return file_dice_throws_protos_dice_throws_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *ThrowRequest) GetHousePlayerId() string {
@@ -219,7 +175,7 @@ type ThrowResponse struct {
 
 func (x *ThrowResponse) Reset() {
 	*x = ThrowResponse{}
-	mi := &file_dice_throws_protos_dice_throws_proto_msgTypes[3]
+	mi := &file_dice_throws_protos_dice_throws_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -231,7 +187,7 @@ func (x *ThrowResponse) String() string {
 func (*ThrowResponse) ProtoMessage() {}
 
 func (x *ThrowResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_dice_throws_protos_dice_throws_proto_msgTypes[3]
+	mi := &file_dice_throws_protos_dice_throws_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -244,7 +200,7 @@ func (x *ThrowResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ThrowResponse.ProtoReflect.Descriptor instead.
 func (*ThrowResponse) Descriptor() ([]byte, []int) {
-	return file_dice_throws_protos_dice_throws_proto_rawDescGZIP(), []int{3}
+	return file_dice_throws_protos_dice_throws_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *ThrowResponse) GetId() string {
@@ -314,11 +270,9 @@ var File_dice_throws_protos_dice_throws_proto protoreflect.FileDescriptor
 
 const file_dice_throws_protos_dice_throws_proto_rawDesc = "" +
 	"\n" +
-	"$dice-throws_protos/dice-throws.proto\x12\tpachucrud\x1a\x1agoogle/api/timestamp.proto\"\"\n" +
-	"\fHelloRequest\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\")\n" +
-	"\rHelloResponse\x12\x18\n" +
-	"\amessage\x18\x01 \x01(\tR\amessage\"\x87\x02\n" +
+	"$dice-throws_protos/dice-throws.proto\x12\rpachuco_proto\x1a\x1agoogle/api/timestamp.proto\")\n" +
+	"\tIdRequest\x12\x1c\n" +
+	"\tIdRequest\x18\x01 \x01(\tR\tIdRequest\"\x87\x02\n" +
 	"\fThrowRequest\x12&\n" +
 	"\x0fhouse_player_id\x18\x01 \x01(\tR\rhousePlayerId\x120\n" +
 	"\x14contestant_player_id\x18\x02 \x01(\tR\x12contestantPlayerId\x12\x1d\n" +
@@ -343,9 +297,12 @@ const file_dice_throws_protos_dice_throws_proto_rawDesc = "" +
 	"bet_amount\x18\a \x01(\x02R\tbetAmount\x12\x17\n" +
 	"\agame_id\x18\b \x01(\tR\x06gameId\x12\x1d\n" +
 	"\n" +
-	"game_round\x18\t \x01(\x05R\tgameRound2H\n" +
-	"\aGreeter\x12=\n" +
-	"\bSayHello\x12\x17.pachucrud.HelloRequest\x1a\x18.pachucrud.HelloResponseB$Z\"github.com/monguis/pachucrud/protob\x06proto3"
+	"game_round\x18\t \x01(\x05R\tgameRound2\xa9\x02\n" +
+	"\tDiceThrow\x12F\n" +
+	"\tSaveThrow\x12\x1b.pachuco_proto.ThrowRequest\x1a\x1c.pachuco_proto.ThrowResponse\x12B\n" +
+	"\bGetThrow\x12\x18.pachuco_proto.IdRequest\x1a\x1c.pachuco_proto.ThrowResponse\x12G\n" +
+	"\rGetUserThrows\x12\x18.pachuco_proto.IdRequest\x1a\x1c.pachuco_proto.ThrowResponse\x12G\n" +
+	"\rGetGameThrows\x12\x18.pachuco_proto.IdRequest\x1a\x1c.pachuco_proto.ThrowResponseB\"Z github.com/monguis/pachuco-protob\x06proto3"
 
 var (
 	file_dice_throws_protos_dice_throws_proto_rawDescOnce sync.Once
@@ -359,20 +316,25 @@ func file_dice_throws_protos_dice_throws_proto_rawDescGZIP() []byte {
 	return file_dice_throws_protos_dice_throws_proto_rawDescData
 }
 
-var file_dice_throws_protos_dice_throws_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_dice_throws_protos_dice_throws_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_dice_throws_protos_dice_throws_proto_goTypes = []any{
-	(*HelloRequest)(nil),          // 0: pachucrud.HelloRequest
-	(*HelloResponse)(nil),         // 1: pachucrud.HelloResponse
-	(*ThrowRequest)(nil),          // 2: pachucrud.ThrowRequest
-	(*ThrowResponse)(nil),         // 3: pachucrud.ThrowResponse
-	(*timestamppb.Timestamp)(nil), // 4: google.protobuf.Timestamp
+	(*IdRequest)(nil),             // 0: pachuco_proto.IdRequest
+	(*ThrowRequest)(nil),          // 1: pachuco_proto.ThrowRequest
+	(*ThrowResponse)(nil),         // 2: pachuco_proto.ThrowResponse
+	(*timestamppb.Timestamp)(nil), // 3: google.protobuf.Timestamp
 }
 var file_dice_throws_protos_dice_throws_proto_depIdxs = []int32{
-	4, // 0: pachucrud.ThrowResponse.created_at:type_name -> google.protobuf.Timestamp
-	0, // 1: pachucrud.Greeter.SayHello:input_type -> pachucrud.HelloRequest
-	1, // 2: pachucrud.Greeter.SayHello:output_type -> pachucrud.HelloResponse
-	2, // [2:3] is the sub-list for method output_type
-	1, // [1:2] is the sub-list for method input_type
+	3, // 0: pachuco_proto.ThrowResponse.created_at:type_name -> google.protobuf.Timestamp
+	1, // 1: pachuco_proto.DiceThrow.SaveThrow:input_type -> pachuco_proto.ThrowRequest
+	0, // 2: pachuco_proto.DiceThrow.GetThrow:input_type -> pachuco_proto.IdRequest
+	0, // 3: pachuco_proto.DiceThrow.GetUserThrows:input_type -> pachuco_proto.IdRequest
+	0, // 4: pachuco_proto.DiceThrow.GetGameThrows:input_type -> pachuco_proto.IdRequest
+	2, // 5: pachuco_proto.DiceThrow.SaveThrow:output_type -> pachuco_proto.ThrowResponse
+	2, // 6: pachuco_proto.DiceThrow.GetThrow:output_type -> pachuco_proto.ThrowResponse
+	2, // 7: pachuco_proto.DiceThrow.GetUserThrows:output_type -> pachuco_proto.ThrowResponse
+	2, // 8: pachuco_proto.DiceThrow.GetGameThrows:output_type -> pachuco_proto.ThrowResponse
+	5, // [5:9] is the sub-list for method output_type
+	1, // [1:5] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name
 	1, // [1:1] is the sub-list for extension extendee
 	0, // [0:1] is the sub-list for field type_name
@@ -389,7 +351,7 @@ func file_dice_throws_protos_dice_throws_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_dice_throws_protos_dice_throws_proto_rawDesc), len(file_dice_throws_protos_dice_throws_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

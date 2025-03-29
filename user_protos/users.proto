@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package pachuco_proto;
+
+option go_package = "github.com/monguis/pachuco-proto";
+
+service User {
+  rpc GetUser (IdRequest) returns (UserResponse);
+  rpc GetUserByEmail (emailRequest) returns (UserResponse);
+  rpc AddUser(UserRequest) returns (UserResponse);
+  rpc UpdateUser (UpdateUserRequest) returns (UserResponse);
+  rpc DeleteUser (UpdateUserRequest) returns (UserResponse);
+}
+
+message IdRequest {
+  string id = 1;
+}
+
+message emailRequest {
+  string email = 1;
+}
+
+message UserRequest {
+  string nickname = 1;
+  string email = 2;
+  string first_name = 3;
+  string last_name = 4;
+  float balance = 5;
+}
+
+message UserResponse {
+  string id = 1;
+  string nickname = 2;
+  string email = 3;
+  string first_name = 4;
+  string last_name = 5;
+  float balance = 6;
+}
+
+message UpdateUserRequest {
+  string id =1;
+  UserRequest user =2;
+}
