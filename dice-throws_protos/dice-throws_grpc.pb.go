@@ -30,9 +30,9 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type DiceThrowClient interface {
 	SaveThrow(ctx context.Context, in *ThrowRequest, opts ...grpc.CallOption) (*ThrowResponse, error)
-	GetThrow(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*ThrowResponse, error)
-	GetUserThrows(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*ThrowResponse, error)
-	GetGameThrows(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*ThrowResponse, error)
+	GetThrow(ctx context.Context, in *ThrowIdRequest, opts ...grpc.CallOption) (*ThrowResponse, error)
+	GetUserThrows(ctx context.Context, in *ThrowIdRequest, opts ...grpc.CallOption) (*ThrowResponse, error)
+	GetGameThrows(ctx context.Context, in *ThrowIdRequest, opts ...grpc.CallOption) (*ThrowResponse, error)
 }
 
 type diceThrowClient struct {
@@ -53,7 +53,7 @@ func (c *diceThrowClient) SaveThrow(ctx context.Context, in *ThrowRequest, opts 
 	return out, nil
 }
 
-func (c *diceThrowClient) GetThrow(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*ThrowResponse, error) {
+func (c *diceThrowClient) GetThrow(ctx context.Context, in *ThrowIdRequest, opts ...grpc.CallOption) (*ThrowResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ThrowResponse)
 	err := c.cc.Invoke(ctx, DiceThrow_GetThrow_FullMethodName, in, out, cOpts...)
@@ -63,7 +63,7 @@ func (c *diceThrowClient) GetThrow(ctx context.Context, in *IdRequest, opts ...g
 	return out, nil
 }
 
-func (c *diceThrowClient) GetUserThrows(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*ThrowResponse, error) {
+func (c *diceThrowClient) GetUserThrows(ctx context.Context, in *ThrowIdRequest, opts ...grpc.CallOption) (*ThrowResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ThrowResponse)
 	err := c.cc.Invoke(ctx, DiceThrow_GetUserThrows_FullMethodName, in, out, cOpts...)
@@ -73,7 +73,7 @@ func (c *diceThrowClient) GetUserThrows(ctx context.Context, in *IdRequest, opts
 	return out, nil
 }
 
-func (c *diceThrowClient) GetGameThrows(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*ThrowResponse, error) {
+func (c *diceThrowClient) GetGameThrows(ctx context.Context, in *ThrowIdRequest, opts ...grpc.CallOption) (*ThrowResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ThrowResponse)
 	err := c.cc.Invoke(ctx, DiceThrow_GetGameThrows_FullMethodName, in, out, cOpts...)
@@ -88,9 +88,9 @@ func (c *diceThrowClient) GetGameThrows(ctx context.Context, in *IdRequest, opts
 // for forward compatibility.
 type DiceThrowServer interface {
 	SaveThrow(context.Context, *ThrowRequest) (*ThrowResponse, error)
-	GetThrow(context.Context, *IdRequest) (*ThrowResponse, error)
-	GetUserThrows(context.Context, *IdRequest) (*ThrowResponse, error)
-	GetGameThrows(context.Context, *IdRequest) (*ThrowResponse, error)
+	GetThrow(context.Context, *ThrowIdRequest) (*ThrowResponse, error)
+	GetUserThrows(context.Context, *ThrowIdRequest) (*ThrowResponse, error)
+	GetGameThrows(context.Context, *ThrowIdRequest) (*ThrowResponse, error)
 	mustEmbedUnimplementedDiceThrowServer()
 }
 
@@ -104,13 +104,13 @@ type UnimplementedDiceThrowServer struct{}
 func (UnimplementedDiceThrowServer) SaveThrow(context.Context, *ThrowRequest) (*ThrowResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SaveThrow not implemented")
 }
-func (UnimplementedDiceThrowServer) GetThrow(context.Context, *IdRequest) (*ThrowResponse, error) {
+func (UnimplementedDiceThrowServer) GetThrow(context.Context, *ThrowIdRequest) (*ThrowResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetThrow not implemented")
 }
-func (UnimplementedDiceThrowServer) GetUserThrows(context.Context, *IdRequest) (*ThrowResponse, error) {
+func (UnimplementedDiceThrowServer) GetUserThrows(context.Context, *ThrowIdRequest) (*ThrowResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUserThrows not implemented")
 }
-func (UnimplementedDiceThrowServer) GetGameThrows(context.Context, *IdRequest) (*ThrowResponse, error) {
+func (UnimplementedDiceThrowServer) GetGameThrows(context.Context, *ThrowIdRequest) (*ThrowResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetGameThrows not implemented")
 }
 func (UnimplementedDiceThrowServer) mustEmbedUnimplementedDiceThrowServer() {}
@@ -153,7 +153,7 @@ func _DiceThrow_SaveThrow_Handler(srv interface{}, ctx context.Context, dec func
 }
 
 func _DiceThrow_GetThrow_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(IdRequest)
+	in := new(ThrowIdRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -165,13 +165,13 @@ func _DiceThrow_GetThrow_Handler(srv interface{}, ctx context.Context, dec func(
 		FullMethod: DiceThrow_GetThrow_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DiceThrowServer).GetThrow(ctx, req.(*IdRequest))
+		return srv.(DiceThrowServer).GetThrow(ctx, req.(*ThrowIdRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _DiceThrow_GetUserThrows_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(IdRequest)
+	in := new(ThrowIdRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -183,13 +183,13 @@ func _DiceThrow_GetUserThrows_Handler(srv interface{}, ctx context.Context, dec 
 		FullMethod: DiceThrow_GetUserThrows_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DiceThrowServer).GetUserThrows(ctx, req.(*IdRequest))
+		return srv.(DiceThrowServer).GetUserThrows(ctx, req.(*ThrowIdRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _DiceThrow_GetGameThrows_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(IdRequest)
+	in := new(ThrowIdRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -201,7 +201,7 @@ func _DiceThrow_GetGameThrows_Handler(srv interface{}, ctx context.Context, dec 
 		FullMethod: DiceThrow_GetGameThrows_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DiceThrowServer).GetGameThrows(ctx, req.(*IdRequest))
+		return srv.(DiceThrowServer).GetGameThrows(ctx, req.(*ThrowIdRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

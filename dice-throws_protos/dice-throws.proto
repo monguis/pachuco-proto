@@ -8,12 +8,12 @@ option go_package = "github.com/monguis/pachuco-proto";
 
 service DiceThrow{
   rpc SaveThrow (ThrowRequest) returns (ThrowResponse);
-  rpc GetThrow (IdRequest) returns (ThrowResponse);
-  rpc GetUserThrows (IdRequest) returns (ThrowResponse);
-  rpc GetGameThrows (IdRequest) returns (ThrowResponse);
+  rpc GetThrow (ThrowIdRequest) returns (ThrowResponse);
+  rpc GetUserThrows (ThrowIdRequest) returns (ThrowResponse);
+  rpc GetGameThrows (ThrowIdRequest) returns (ThrowResponse);
 }
 
-message IdRequest {
+message ThrowIdRequest {
   string IdRequest = 1;
 }
 

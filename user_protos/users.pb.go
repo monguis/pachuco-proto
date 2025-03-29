@@ -21,27 +21,27 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type IdRequest struct {
+type UserIdRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *IdRequest) Reset() {
-	*x = IdRequest{}
+func (x *UserIdRequest) Reset() {
+	*x = UserIdRequest{}
 	mi := &file_user_protos_users_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *IdRequest) String() string {
+func (x *UserIdRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*IdRequest) ProtoMessage() {}
+func (*UserIdRequest) ProtoMessage() {}
 
-func (x *IdRequest) ProtoReflect() protoreflect.Message {
+func (x *UserIdRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_user_protos_users_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -53,12 +53,12 @@ func (x *IdRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use IdRequest.ProtoReflect.Descriptor instead.
-func (*IdRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use UserIdRequest.ProtoReflect.Descriptor instead.
+func (*UserIdRequest) Descriptor() ([]byte, []int) {
 	return file_user_protos_users_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *IdRequest) GetId() string {
+func (x *UserIdRequest) GetId() string {
 	if x != nil {
 		return x.Id
 	}
@@ -341,8 +341,8 @@ var File_user_protos_users_proto protoreflect.FileDescriptor
 
 const file_user_protos_users_proto_rawDesc = "" +
 	"\n" +
-	"\x17user_protos/users.proto\x12\rpachuco_proto\"\x1b\n" +
-	"\tIdRequest\x12\x0e\n" +
+	"\x17user_protos/users.proto\x12\rpachuco_proto\"\x1f\n" +
+	"\rUserIdRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"$\n" +
 	"\fEmailRequest\x12\x14\n" +
 	"\x05email\x18\x01 \x01(\tR\x05email\"\xb1\x01\n" +
@@ -365,9 +365,9 @@ const file_user_protos_users_proto_rawDesc = "" +
 	"\busername\x18\a \x01(\tR\busername\"S\n" +
 	"\x11UpdateUserRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12.\n" +
-	"\x04user\x18\x02 \x01(\v2\x1a.pachuco_proto.UserRequestR\x04user2\xf2\x02\n" +
-	"\x04User\x12@\n" +
-	"\aGetUser\x12\x18.pachuco_proto.IdRequest\x1a\x1b.pachuco_proto.UserResponse\x12J\n" +
+	"\x04user\x18\x02 \x01(\v2\x1a.pachuco_proto.UserRequestR\x04user2\xf6\x02\n" +
+	"\x04User\x12D\n" +
+	"\aGetUser\x12\x1c.pachuco_proto.UserIdRequest\x1a\x1b.pachuco_proto.UserResponse\x12J\n" +
 	"\x0eGetUserByEmail\x12\x1b.pachuco_proto.EmailRequest\x1a\x1b.pachuco_proto.UserResponse\x12B\n" +
 	"\aAddUser\x12\x1a.pachuco_proto.UserRequest\x1a\x1b.pachuco_proto.UserResponse\x12K\n" +
 	"\n" +
@@ -389,7 +389,7 @@ func file_user_protos_users_proto_rawDescGZIP() []byte {
 
 var file_user_protos_users_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_user_protos_users_proto_goTypes = []any{
-	(*IdRequest)(nil),         // 0: pachuco_proto.IdRequest
+	(*UserIdRequest)(nil),     // 0: pachuco_proto.UserIdRequest
 	(*EmailRequest)(nil),      // 1: pachuco_proto.EmailRequest
 	(*UserRequest)(nil),       // 2: pachuco_proto.UserRequest
 	(*UserResponse)(nil),      // 3: pachuco_proto.UserResponse
@@ -397,7 +397,7 @@ var file_user_protos_users_proto_goTypes = []any{
 }
 var file_user_protos_users_proto_depIdxs = []int32{
 	2, // 0: pachuco_proto.UpdateUserRequest.user:type_name -> pachuco_proto.UserRequest
-	0, // 1: pachuco_proto.User.GetUser:input_type -> pachuco_proto.IdRequest
+	0, // 1: pachuco_proto.User.GetUser:input_type -> pachuco_proto.UserIdRequest
 	1, // 2: pachuco_proto.User.GetUserByEmail:input_type -> pachuco_proto.EmailRequest
 	2, // 3: pachuco_proto.User.AddUser:input_type -> pachuco_proto.UserRequest
 	4, // 4: pachuco_proto.User.UpdateUser:input_type -> pachuco_proto.UpdateUserRequest

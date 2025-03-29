@@ -22,27 +22,27 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type IdRequest struct {
+type ThrowIdRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	IdRequest     string                 `protobuf:"bytes,1,opt,name=IdRequest,proto3" json:"IdRequest,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *IdRequest) Reset() {
-	*x = IdRequest{}
+func (x *ThrowIdRequest) Reset() {
+	*x = ThrowIdRequest{}
 	mi := &file_dice_throws_protos_dice_throws_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *IdRequest) String() string {
+func (x *ThrowIdRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*IdRequest) ProtoMessage() {}
+func (*ThrowIdRequest) ProtoMessage() {}
 
-func (x *IdRequest) ProtoReflect() protoreflect.Message {
+func (x *ThrowIdRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_dice_throws_protos_dice_throws_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -54,12 +54,12 @@ func (x *IdRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use IdRequest.ProtoReflect.Descriptor instead.
-func (*IdRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use ThrowIdRequest.ProtoReflect.Descriptor instead.
+func (*ThrowIdRequest) Descriptor() ([]byte, []int) {
 	return file_dice_throws_protos_dice_throws_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *IdRequest) GetIdRequest() string {
+func (x *ThrowIdRequest) GetIdRequest() string {
 	if x != nil {
 		return x.IdRequest
 	}
@@ -270,8 +270,8 @@ var File_dice_throws_protos_dice_throws_proto protoreflect.FileDescriptor
 
 const file_dice_throws_protos_dice_throws_proto_rawDesc = "" +
 	"\n" +
-	"$dice-throws_protos/dice-throws.proto\x12\rpachuco_proto\x1a\x1agoogle/api/timestamp.proto\")\n" +
-	"\tIdRequest\x12\x1c\n" +
+	"$dice-throws_protos/dice-throws.proto\x12\rpachuco_proto\x1a\x1agoogle/api/timestamp.proto\".\n" +
+	"\x0eThrowIdRequest\x12\x1c\n" +
 	"\tIdRequest\x18\x01 \x01(\tR\tIdRequest\"\x87\x02\n" +
 	"\fThrowRequest\x12&\n" +
 	"\x0fhouse_player_id\x18\x01 \x01(\tR\rhousePlayerId\x120\n" +
@@ -297,12 +297,12 @@ const file_dice_throws_protos_dice_throws_proto_rawDesc = "" +
 	"bet_amount\x18\a \x01(\x02R\tbetAmount\x12\x17\n" +
 	"\agame_id\x18\b \x01(\tR\x06gameId\x12\x1d\n" +
 	"\n" +
-	"game_round\x18\t \x01(\x05R\tgameRound2\xa9\x02\n" +
+	"game_round\x18\t \x01(\x05R\tgameRound2\xb8\x02\n" +
 	"\tDiceThrow\x12F\n" +
-	"\tSaveThrow\x12\x1b.pachuco_proto.ThrowRequest\x1a\x1c.pachuco_proto.ThrowResponse\x12B\n" +
-	"\bGetThrow\x12\x18.pachuco_proto.IdRequest\x1a\x1c.pachuco_proto.ThrowResponse\x12G\n" +
-	"\rGetUserThrows\x12\x18.pachuco_proto.IdRequest\x1a\x1c.pachuco_proto.ThrowResponse\x12G\n" +
-	"\rGetGameThrows\x12\x18.pachuco_proto.IdRequest\x1a\x1c.pachuco_proto.ThrowResponseB\"Z github.com/monguis/pachuco-protob\x06proto3"
+	"\tSaveThrow\x12\x1b.pachuco_proto.ThrowRequest\x1a\x1c.pachuco_proto.ThrowResponse\x12G\n" +
+	"\bGetThrow\x12\x1d.pachuco_proto.ThrowIdRequest\x1a\x1c.pachuco_proto.ThrowResponse\x12L\n" +
+	"\rGetUserThrows\x12\x1d.pachuco_proto.ThrowIdRequest\x1a\x1c.pachuco_proto.ThrowResponse\x12L\n" +
+	"\rGetGameThrows\x12\x1d.pachuco_proto.ThrowIdRequest\x1a\x1c.pachuco_proto.ThrowResponseB\"Z github.com/monguis/pachuco-protob\x06proto3"
 
 var (
 	file_dice_throws_protos_dice_throws_proto_rawDescOnce sync.Once
@@ -318,7 +318,7 @@ func file_dice_throws_protos_dice_throws_proto_rawDescGZIP() []byte {
 
 var file_dice_throws_protos_dice_throws_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_dice_throws_protos_dice_throws_proto_goTypes = []any{
-	(*IdRequest)(nil),             // 0: pachuco_proto.IdRequest
+	(*ThrowIdRequest)(nil),        // 0: pachuco_proto.ThrowIdRequest
 	(*ThrowRequest)(nil),          // 1: pachuco_proto.ThrowRequest
 	(*ThrowResponse)(nil),         // 2: pachuco_proto.ThrowResponse
 	(*timestamppb.Timestamp)(nil), // 3: google.protobuf.Timestamp
@@ -326,9 +326,9 @@ var file_dice_throws_protos_dice_throws_proto_goTypes = []any{
 var file_dice_throws_protos_dice_throws_proto_depIdxs = []int32{
 	3, // 0: pachuco_proto.ThrowResponse.created_at:type_name -> google.protobuf.Timestamp
 	1, // 1: pachuco_proto.DiceThrow.SaveThrow:input_type -> pachuco_proto.ThrowRequest
-	0, // 2: pachuco_proto.DiceThrow.GetThrow:input_type -> pachuco_proto.IdRequest
-	0, // 3: pachuco_proto.DiceThrow.GetUserThrows:input_type -> pachuco_proto.IdRequest
-	0, // 4: pachuco_proto.DiceThrow.GetGameThrows:input_type -> pachuco_proto.IdRequest
+	0, // 2: pachuco_proto.DiceThrow.GetThrow:input_type -> pachuco_proto.ThrowIdRequest
+	0, // 3: pachuco_proto.DiceThrow.GetUserThrows:input_type -> pachuco_proto.ThrowIdRequest
+	0, // 4: pachuco_proto.DiceThrow.GetGameThrows:input_type -> pachuco_proto.ThrowIdRequest
 	2, // 5: pachuco_proto.DiceThrow.SaveThrow:output_type -> pachuco_proto.ThrowResponse
 	2, // 6: pachuco_proto.DiceThrow.GetThrow:output_type -> pachuco_proto.ThrowResponse
 	2, // 7: pachuco_proto.DiceThrow.GetUserThrows:output_type -> pachuco_proto.ThrowResponse

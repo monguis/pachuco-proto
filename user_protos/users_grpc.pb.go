@@ -30,7 +30,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type UserClient interface {
-	GetUser(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*UserResponse, error)
+	GetUser(ctx context.Context, in *UserIdRequest, opts ...grpc.CallOption) (*UserResponse, error)
 	GetUserByEmail(ctx context.Context, in *EmailRequest, opts ...grpc.CallOption) (*UserResponse, error)
 	AddUser(ctx context.Context, in *UserRequest, opts ...grpc.CallOption) (*UserResponse, error)
 	UpdateUser(ctx context.Context, in *UpdateUserRequest, opts ...grpc.CallOption) (*UserResponse, error)
@@ -45,7 +45,7 @@ func NewUserClient(cc grpc.ClientConnInterface) UserClient {
 	return &userClient{cc}
 }
 
-func (c *userClient) GetUser(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*UserResponse, error) {
+func (c *userClient) GetUser(ctx context.Context, in *UserIdRequest, opts ...grpc.CallOption) (*UserResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(UserResponse)
 	err := c.cc.Invoke(ctx, User_GetUser_FullMethodName, in, out, cOpts...)
@@ -99,7 +99,7 @@ func (c *userClient) DeleteUser(ctx context.Context, in *UpdateUserRequest, opts
 // All implementations must embed UnimplementedUserServer
 // for forward compatibility.
 type UserServer interface {
-	GetUser(context.Context, *IdRequest) (*UserResponse, error)
+	GetUser(context.Context, *UserIdRequest) (*UserResponse, error)
 	GetUserByEmail(context.Context, *EmailRequest) (*UserResponse, error)
 	AddUser(context.Context, *UserRequest) (*UserResponse, error)
 	UpdateUser(context.Context, *UpdateUserRequest) (*UserResponse, error)
@@ -114,7 +114,7 @@ type UserServer interface {
 // pointer dereference when methods are called.
 type UnimplementedUserServer struct{}
 
-func (UnimplementedUserServer) GetUser(context.Context, *IdRequest) (*UserResponse, error) {
+func (UnimplementedUserServer) GetUser(context.Context, *UserIdRequest) (*UserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUser not implemented")
 }
 func (UnimplementedUserServer) GetUserByEmail(context.Context, *EmailRequest) (*UserResponse, error) {
@@ -151,7 +151,7 @@ func RegisterUserServer(s grpc.ServiceRegistrar, srv UserServer) {
 }
 
 func _User_GetUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(IdRequest)
+	in := new(UserIdRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -163,7 +163,7 @@ func _User_GetUser_Handler(srv interface{}, ctx context.Context, dec func(interf
 		FullMethod: User_GetUser_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServer).GetUser(ctx, req.(*IdRequest))
+		return srv.(UserServer).GetUser(ctx, req.(*UserIdRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
