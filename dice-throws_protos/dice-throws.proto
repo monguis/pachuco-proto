@@ -21,7 +21,7 @@ message ThrowRequest{
 }
 
 message ThrowResponse{
-  repeated string dice = 1;
+  repeated int32 dice = 1;
   string combo = 2;
   int32 most_repeated_die = 3;
   optional int32 second_most_repeated_die = 4;
