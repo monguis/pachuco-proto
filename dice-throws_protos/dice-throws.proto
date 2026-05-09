@@ -7,27 +7,27 @@ package pachuco_proto;
 option go_package = "github.com/monguis/pachuco-proto";
 
 service DiceThrow{
-  rpc SaveThrow (ThrowRequest) returns (ThrowResponse);
-  rpc GetThrow (ThrowIdRequest) returns (ThrowResponse);
-  rpc GetUserThrows (ThrowIdRequest) returns (ThrowResponse);
-  rpc GetGameThrows (ThrowIdRequest) returns (ThrowResponse);
+  rpc PostThrow (ThrowRequest) returns (ThrowResponse);
 }
 
 message ThrowIdRequest {
-  string IdRequest = 1;
+  string gameId = 1;
+  string playerId = 1;
 }
 
 message ThrowRequest{
-  string house_player_id = 1;
-  string contestant_player_id = 2;
-  repeated int32 house_dice = 3;
-  repeated int32 contestant_dice = 4;
-  float bet_amount = 5;
-  string game_id = 6;
-  int32 game_round = 7;
+  string gameId = 1;
+  string playerId = 1;
 }
 
 message ThrowResponse{
+  repeated string dice = 1;
+  string combo = 2;
+  int16 most_repeated_die = 3;
+  optional int16 second_most_repeated_die = 4;
+}
+
+message ThrowResponseLegacy{
   string id =1;
   google.protobuf.Timestamp created_at = 2;
   string house_player_id = 3;
