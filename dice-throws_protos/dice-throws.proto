@@ -12,19 +12,19 @@ service DiceThrow{
 
 message ThrowIdRequest {
   string gameId = 1;
-  string playerId = 1;
+  string playerId = 2;
 }
 
 message ThrowRequest{
   string gameId = 1;
-  string playerId = 1;
+  string playerId = 2;
 }
 
 message ThrowResponse{
   repeated string dice = 1;
   string combo = 2;
-  int16 most_repeated_die = 3;
-  optional int16 second_most_repeated_die = 4;
+  int32 most_repeated_die = 3;
+  optional int32 second_most_repeated_die = 4;
 }
 
 message ThrowResponseLegacy{
