@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package pachuco_proto;
+
+option go_package = "github.com/monguis/pachuco-proto";
+
+service GameService {
+  rpc GetAllGames (EmptyRequest) returns (GetAllGamesResponse);
+}
+
+message EmptyRequest {}
+
+message GameMessage {
+  string id = 1;
+  string status = 2;
+  int32 bet_limit = 3;
+  int32 total_players = 4;
+}
+
+message GetAllGamesResponse {
+  repeated GameMessage games = 1;
+}

@@ -7,13 +7,18 @@ option go_package = "github.com/monguis/pachuco-proto";
 service User {
   rpc GetUser (UserIdRequest) returns (UserResponse);
   rpc GetUserByEmail (EmailRequest) returns (UserResponse);
-  rpc AddUser(UserRequest) returns (UserResponse);
+  rpc GetUserByAuthId (AuthIdRequest) returns (UserResponse);
+  rpc AddPlayerUser (UserRequest) returns (UserResponse);
   rpc UpdateUser (UpdateUserRequest) returns (UserResponse);
-  rpc DeleteUser (UpdateUserRequest) returns (UserResponse);
+  rpc DeleteUser (UserIdRequest) returns (UserResponse);
 }
 
 message UserIdRequest {
   string id = 1;
+}
+
+message AuthIdRequest {
+  string auth_id = 1;
 }
 
 message EmailRequest {
@@ -27,6 +32,8 @@ message UserRequest {
   string last_name = 4;
   float balance = 5;
   string username = 6;
+  string auth_id = 7;
+  repeated string roles = 8;
 }
 
 message UserResponse {
