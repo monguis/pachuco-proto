@@ -8,11 +8,16 @@ service GameService {
   rpc GetAllGames (EmptyRequest) returns (GetAllGamesResponse);
   rpc CreateGame (CreateGameRequest) returns (GameResponse);
   rpc JoinGame (JoinGameRequest) returns (GameResponse);
+  rpc MarkPlayerReady (MarkPlayerReadyRequest) returns (GameResponse);
   rpc StartRound (StartRoundRequest) returns (GameResponse);
   rpc PlaceBet (PlaceBetRequest) returns (GameResponse);
   rpc HouseRoll (RollRequest) returns (GameResponse);
   rpc PlayerRoll (RollRequest) returns (GameResponse);
+  rpc AdvanceToEnoughPlayers (GameIdRequest) returns (GameResponse);
+  rpc AdvanceToGameStart (GameIdRequest) returns (GameResponse);
+  rpc AdvanceToNextRound (GameIdRequest) returns (GameResponse);
   rpc GetGameState (GameIdRequest) returns (GameStateResponse);
+  rpc GetCurrentTurn (GameIdRequest) returns (CurrentTurnResponse);
   rpc CompleteGame (GameIdRequest) returns (GameResponse);
   rpc DeleteGame (GameIdRequest) returns (GameResponse);
 }
@@ -28,6 +33,11 @@ message CreateGameRequest {
 }
 
 message JoinGameRequest {
+  string game_id = 1;
+  string player_id = 2;
+}
+
+message MarkPlayerReadyRequest {
   string game_id = 1;
   string player_id = 2;
 }
@@ -77,6 +87,10 @@ message GameStateResponse {
   int32 house_roll = 8;
   repeated BetInfo bets = 9;
   repeated RollInfo player_rolls = 10;
+  repeated string waiting_players = 11;
+  repeated string ready_players = 12;
+  int32 current_turn = 13;
+  bool needs_shuffling = 14;
 }
 
 message BetInfo {
@@ -87,4 +101,10 @@ message BetInfo {
 message RollInfo {
   string player_id = 1;
   int32 dice_value = 2;
+}
+
+message CurrentTurnResponse {
+  string game_id = 1;
+  int32 current_turn = 2;
+  string current_player_id = 3;
 }
