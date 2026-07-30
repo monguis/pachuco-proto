@@ -11,6 +11,8 @@ service User {
   rpc AddPlayerUser (UserRequest) returns (UserResponse);
   rpc UpdateUser (UpdateUserRequest) returns (UserResponse);
   rpc DeleteUser (UserIdRequest) returns (UserResponse);
+  rpc GetBalance (UserIdRequest) returns (BalanceResponse);
+  rpc Deposit (DepositRequest) returns (BalanceResponse);
 }
 
 message UserIdRequest {
@@ -41,11 +43,21 @@ message UserResponse {
   string username = 2;
   string email = 3;
   string nickname = 4;
-  string auth_id = 5; // Note: proto uses snake_case by convention
+  string auth_id = 5;
   repeated string roles = 6;
 }
 
 message UpdateUserRequest {
   string id =1;
   UserRequest user =2;
+}
+
+message BalanceResponse {
+  string user_id = 1;
+  double balance = 2;
+}
+
+message DepositRequest {
+  string user_id = 1;
+  double amount = 2;
 }

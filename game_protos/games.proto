@@ -6,9 +6,53 @@ option go_package = "github.com/monguis/pachuco-proto";
 
 service GameService {
   rpc GetAllGames (EmptyRequest) returns (GetAllGamesResponse);
+  rpc CreateGame (CreateGameRequest) returns (GameResponse);
+  rpc JoinGame (JoinGameRequest) returns (GameResponse);
+  rpc StartRound (StartRoundRequest) returns (GameResponse);
+  rpc PlaceBet (PlaceBetRequest) returns (GameResponse);
+  rpc HouseRoll (RollRequest) returns (GameResponse);
+  rpc PlayerRoll (RollRequest) returns (GameResponse);
+  rpc GetGameState (GameIdRequest) returns (GameStateResponse);
+  rpc CompleteGame (GameIdRequest) returns (GameResponse);
 }
 
 message EmptyRequest {}
+
+message GameIdRequest {
+  string game_id = 1;
+}
+
+message CreateGameRequest {
+  string creator_id = 1;
+}
+
+message JoinGameRequest {
+  string game_id = 1;
+  string player_id = 2;
+}
+
+message StartRoundRequest {
+  string game_id = 1;
+  string house_player_id = 2;
+  double bet_limit = 3;
+}
+
+message PlaceBetRequest {
+  string game_id = 1;
+  string player_id = 2;
+  double amount = 3;
+}
+
+message RollRequest {
+  string game_id = 1;
+  string player_id = 2;
+}
+
+message GameResponse {
+  string id = 1;
+  string status = 2;
+  string message = 3;
+}
 
 message GameMessage {
   string id = 1;
@@ -19,4 +63,27 @@ message GameMessage {
 
 message GetAllGamesResponse {
   repeated GameMessage games = 1;
+}
+
+message GameStateResponse {
+  string game_id = 1;
+  string status = 2;
+  int32 current_round = 3;
+  string round_status = 4;
+  string house_player_id = 5;
+  double bet_limit = 6;
+  repeated string turn_order = 7;
+  int32 house_roll = 8;
+  repeated BetInfo bets = 9;
+  repeated RollInfo player_rolls = 10;
+}
+
+message BetInfo {
+  string player_id = 1;
+  double amount = 2;
+}
+
+message RollInfo {
+  string player_id = 1;
+  int32 dice_value = 2;
 }
