@@ -11,10 +11,13 @@ service GameService {
   rpc MarkPlayerReady (MarkPlayerReadyRequest) returns (GameResponse);
   rpc StartRound (StartRoundRequest) returns (GameResponse);
   rpc PlaceBet (PlaceBetRequest) returns (GameResponse);
-  rpc HouseRoll (RollRequest) returns (GameResponse);
-  rpc PlayerRoll (RollRequest) returns (GameResponse);
+  rpc HouseRoll (RollRequest) returns (RollResponse);
+  rpc PlayerRoll (RollRequest) returns (RollResponse);
   rpc AdvanceToEnoughPlayers (GameIdRequest) returns (GameResponse);
-  rpc AdvanceToGameStart (GameIdRequest) returns (GameResponse);
+  rpc AdvanceToGameStart (AdvanceToGameStartRequest) returns (GameResponse);
+  rpc AdvanceToPlayersBetSetting (GameIdRequest) returns (GameResponse);
+  rpc AdvanceToBankThrow (GameIdRequest) returns (GameResponse);
+  rpc AdvanceToRoundCompleted (GameIdRequest) returns (GameResponse);
   rpc AdvanceToNextRound (GameIdRequest) returns (GameResponse);
   rpc GetGameState (GameIdRequest) returns (GameStateResponse);
   rpc GetCurrentTurn (GameIdRequest) returns (CurrentTurnResponse);
@@ -59,10 +62,27 @@ message RollRequest {
   string player_id = 2;
 }
 
+message RollResponse {
+  string game_id = 1;
+  string player_id = 2;
+  repeated int32 dice = 3;
+  string combo = 4;
+  bool winner = 5;
+  string message = 6;
+}
+
+message AdvanceToGameStartRequest {
+  string game_id = 1;
+  repeated string player_order = 2;
+}
+
 message GameResponse {
   string id = 1;
   string status = 2;
   string message = 3;
+  string house_player_id = 4;
+  repeated string turn_order = 5;
+  int32 current_round = 6;
 }
 
 message GameMessage {
@@ -70,6 +90,7 @@ message GameMessage {
   string status = 2;
   int32 bet_limit = 3;
   int32 total_players = 4;
+  string round_status = 5;
 }
 
 message GetAllGamesResponse {
@@ -84,13 +105,15 @@ message GameStateResponse {
   string house_player_id = 5;
   double bet_limit = 6;
   repeated string turn_order = 7;
-  int32 house_roll = 8;
+  repeated int32 house_dice = 8;
   repeated BetInfo bets = 9;
   repeated RollInfo player_rolls = 10;
   repeated string waiting_players = 11;
   repeated string ready_players = 12;
   int32 current_turn = 13;
   bool needs_shuffling = 14;
+  int32 max_players = 15;
+  int32 round_number = 16;
 }
 
 message BetInfo {
@@ -100,7 +123,9 @@ message BetInfo {
 
 message RollInfo {
   string player_id = 1;
-  int32 dice_value = 2;
+  repeated int32 dice = 2;
+  string combo = 3;
+  string outcome = 4;
 }
 
 message CurrentTurnResponse {

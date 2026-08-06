@@ -25,6 +25,7 @@ message ThrowResponse{
   string combo = 2;
   int32 most_repeated_die = 3;
   optional int32 second_most_repeated_die = 4;
+  bool winner = 5;
 }
 
 message ThrowResponseLegacy{
