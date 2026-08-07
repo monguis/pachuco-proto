@@ -17,6 +17,7 @@ service GameService {
   rpc AdvanceToGameStart (AdvanceToGameStartRequest) returns (GameResponse);
   rpc AdvanceToPlayersBetSetting (GameIdRequest) returns (GameResponse);
   rpc AdvanceToBankThrow (GameIdRequest) returns (GameResponse);
+  rpc AdvanceToPlayersThrow (GameIdRequest) returns (GameResponse);
   rpc AdvanceToRoundCompleted (GameIdRequest) returns (GameResponse);
   rpc AdvanceToNextRound (GameIdRequest) returns (GameResponse);
   rpc GetGameState (GameIdRequest) returns (GameStateResponse);
