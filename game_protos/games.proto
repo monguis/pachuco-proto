@@ -92,6 +92,7 @@ message GameMessage {
   int32 bet_limit = 3;
   int32 total_players = 4;
   string round_status = 5;
+  repeated string turn_order = 6;
 }
 
 message GetAllGamesResponse {

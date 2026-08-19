@@ -45,6 +45,7 @@ message UserResponse {
   string nickname = 4;
   string auth_id = 5;
   repeated string roles = 6;
+  double balance = 7;
 }
 
 message UpdateUserRequest {
