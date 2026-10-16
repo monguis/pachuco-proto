@@ -9,6 +9,8 @@ service User {
   rpc GetUserByEmail (EmailRequest) returns (UserResponse);
   rpc GetUserByAuthId (AuthIdRequest) returns (UserResponse);
   rpc AddPlayerUser (UserRequest) returns (UserResponse);
+  rpc AddTestPlayer (UserRequest) returns (UserResponse);
+  rpc ListUsersByRole (RoleRequest) returns (UsersResponse);
   rpc UpdateUser (UpdateUserRequest) returns (UserResponse);
   rpc DeleteUser (UserIdRequest) returns (UserResponse);
   rpc GetBalance (UserIdRequest) returns (BalanceResponse);
@@ -61,4 +63,12 @@ message BalanceResponse {
 message DepositRequest {
   string user_id = 1;
   double amount = 2;
+}
+
+message RoleRequest {
+  string role = 1;
+}
+
+message UsersResponse {
+  repeated UserResponse users = 1;
 }
