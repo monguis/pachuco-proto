@@ -135,6 +135,7 @@ message RollInfo {
   repeated int32 dice = 2;
   string combo = 3;
   string outcome = 4;
+  bool forfeit = 5;
 }
 
 message CurrentTurnResponse {
