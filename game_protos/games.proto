@@ -23,6 +23,7 @@ service GameService {
   rpc GetGameState (GameIdRequest) returns (GameStateResponse);
   rpc GetCurrentTurn (GameIdRequest) returns (CurrentTurnResponse);
   rpc CompleteGame (GameIdRequest) returns (GameResponse);
+  rpc FailLobby (GameIdRequest) returns (GameResponse);
   rpc DeleteGame (GameIdRequest) returns (GameResponse);
 }
 
