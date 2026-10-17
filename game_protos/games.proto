@@ -24,6 +24,7 @@ service GameService {
   rpc GetCurrentTurn (GameIdRequest) returns (CurrentTurnResponse);
   rpc CompleteGame (GameIdRequest) returns (GameResponse);
   rpc FailLobby (GameIdRequest) returns (GameResponse);
+  rpc LeaveGame (LeaveGameRequest) returns (GameResponse);
   rpc DeleteGame (GameIdRequest) returns (GameResponse);
 }
 
@@ -43,6 +44,11 @@ message JoinGameRequest {
 }
 
 message MarkPlayerReadyRequest {
+  string game_id = 1;
+  string player_id = 2;
+}
+
+message LeaveGameRequest {
   string game_id = 1;
   string player_id = 2;
 }
