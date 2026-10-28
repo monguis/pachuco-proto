@@ -11,8 +11,6 @@ service GameService {
   rpc MarkPlayerReady (MarkPlayerReadyRequest) returns (GameResponse);
   rpc StartRound (StartRoundRequest) returns (GameResponse);
   rpc PlaceBet (PlaceBetRequest) returns (GameResponse);
-  rpc HouseRoll (RollRequest) returns (RollResponse);
-  rpc PlayerRoll (RollRequest) returns (RollResponse);
   rpc AdvanceToEnoughPlayers (GameIdRequest) returns (GameResponse);
   rpc AdvanceToGameStart (AdvanceToGameStartRequest) returns (GameResponse);
   rpc AdvanceToPlayersBetSetting (GameIdRequest) returns (GameResponse);
@@ -64,20 +62,6 @@ message PlaceBetRequest {
   string game_id = 1;
   string player_id = 2;
   double amount = 3;
-}
-
-message RollRequest {
-  string game_id = 1;
-  string player_id = 2;
-}
-
-message RollResponse {
-  string game_id = 1;
-  string player_id = 2;
-  repeated int32 dice = 3;
-  string combo = 4;
-  bool winner = 5;
-  string message = 6;
 }
 
 message AdvanceToGameStartRequest {
