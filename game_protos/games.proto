@@ -14,9 +14,8 @@ service GameService {
   rpc AdvanceToEnoughPlayers (GameIdRequest) returns (GameResponse);
   rpc AdvanceToGameStart (AdvanceToGameStartRequest) returns (GameResponse);
   rpc AdvanceToPlayersBetSetting (GameIdRequest) returns (GameResponse);
-  rpc AdvanceToBankThrow (GameIdRequest) returns (GameResponse);
   rpc AdvanceToDiceRolling (GameIdRequest) returns (GameResponse);
-  rpc AdvanceToPlayersThrow (GameIdRequest) returns (GameResponse);
+  rpc PassTurn (PassTurnRequest) returns (GameResponse);
   rpc AdvanceToRoundCompleted (GameIdRequest) returns (GameResponse);
   rpc AdvanceToNextRound (GameIdRequest) returns (GameResponse);
   rpc GetGameState (GameIdRequest) returns (GameStateResponse);
@@ -56,6 +55,11 @@ message StartRoundRequest {
   string game_id = 1;
   string house_player_id = 2;
   double bet_limit = 3;
+}
+
+message PassTurnRequest {
+  string game_id = 1;
+  string player_id = 2;
 }
 
 message PlaceBetRequest {
